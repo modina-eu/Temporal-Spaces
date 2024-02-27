@@ -1,0 +1,40 @@
+﻿#pragma kernel CSMain
+Texture2D<float4> reader; 
+RWTexture2D<float4> writer;
+SamplerState _pointClamp;
+float _resx;
+float _resy;
+float _time;
+float4 _pos0;
+float4 _pos1;
+float4 _pos2;
+float4 _pos3;
+float4 _pos4;
+float4 _pos5;
+float4 _pos6;
+float4 _pos7;
+float4 _pos8;
+float4 _pos9;
+float4 _pos10;
+float4 _pos11;
+
+float mod(float x, float y){return x - y * floor(x / y);}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float2 uv = f / res;
+	float itn = floor(_resy / 12.);
+	float4 t1 = reader.SampleLevel(_pointClamp, uv + 0.5 / res, 0)*step(1.,_time);
+
+	float m1 = step(frac(_time / _resx), uv.x);
+	float m2 = max(step(itn*frac((_time-(_resx-1.)) / (_resx* itn)), mod(uv.y*_resy, itn)), step(frac(_time/itn/_resx),1. / itn-1./_resx));
+
+	float4 pp = lerp(lerp(lerp(lerp(lerp(lerp(lerp(lerp(lerp(lerp(lerp(_pos0, _pos1, step(itn, id.y)), _pos2, step(2.*itn, id.y)), _pos3, step(3.*itn, id.y)), _pos4, step(4.*itn, id.y)),_pos5, step(5.*itn, id.y)),
+	_pos6, step(6.*itn, id.y)), _pos7, step(7.*itn, id.y)), _pos8, step(8.*itn, id.y)), _pos9, step(9.*itn, id.y)), _pos10, step(10.*itn, id.y)), _pos11, step(11.*itn, id.y));
+	float4 v1 = lerp(t1,pp,m2*m1);
+	writer[id] = v1;
+}

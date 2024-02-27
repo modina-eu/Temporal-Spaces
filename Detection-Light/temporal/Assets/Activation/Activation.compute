@@ -1,0 +1,87 @@
+#pragma kernel CSMain
+#pragma kernel CSMain3
+#pragma kernel CSMain2
+Texture2D<float4> reader;
+Texture2D<float4> reader2;
+Texture2D<float4> reader3;
+Texture2D<float4> reader4;
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+
+float _resx;
+float _resy;
+
+RWStructuredBuffer<float> t3Buffer2;
+float t3Array[5];
+
+
+[numthreads(8, 8, 1)]
+void CSMain(uint2 id : SV_DispatchThreadID)
+{
+
+	float2 f = float2(id.x, id.y);
+	float2 res = float2(_resx, _resy);
+	float2 uv = f / res;
+
+	float vid = pow(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).y, 0.5);
+	float prev = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x;
+
+	float diff = abs(vid - prev);
+
+	diff = smoothstep(0.2, 0.5, diff);
+	float ta = 0.;
+	diff = max(diff, reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).y*0.95);
+	float bs = 1. / 33.;
+	float bs2 = 1. / 33.;
+	float2 bs3 = float2(bs, bs2);
+	float vm = 1000.;
+	//float2 g = float2(0.,0.); float vtot = 0.;
+	float2 pm = float2(0.5, 0.5);
+	for (int i = 0; i <= 32; i++)
+		for (int j = 0; j <= 32; j++) {
+			float2 p = (float2(0.5, 0.5) + float2(i, j))*bs3;
+			float v = reader.SampleLevel(_LinearClamp, p + 0.5 / res, 0).y;
+			float v2 = 1. - v;
+
+			//g += p * v;
+			//vtot += v;
+			if (v2 < vm) {
+				vm = v2;
+				pm = p;
+			}
+
+		}
+
+	if (pm.x == 0.5*bs)
+	{//pm = float2(0.5, 0.5);
+		ta = clamp(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a - 0.04, 0., 1.);
+	}
+	else {
+		ta = clamp(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a + 0.01, 0., 1.);
+	}
+	
+
+
+	writer[id] = float4(lerp(prev, vid, 0.2), diff, vm, ta);
+}
+[numthreads(8, 8, 1)]
+void CSMain3(uint2 id : SV_DispatchThreadID)
+{
+	t3Buffer2[0] = reader.SampleLevel(_LinearClamp, float2(0.25, 1.), 0).z;
+	t3Buffer2[1] = reader.SampleLevel(_LinearClamp, float2(0.75, 1.), 0).z;
+	t3Buffer2[2] = reader.SampleLevel(_LinearClamp, float2(0.75, 1.), 0).a;
+}
+[numthreads(8, 8, 1)]
+void CSMain2(uint2 id : SV_DispatchThreadID)
+{
+
+	float2 f = float2(id.x, id.y);
+	float2 res = float2(_resx, _resy);
+	float2 uv = f / res;
+	float t0 = reader2.SampleLevel(_LinearClamp, uv+float2(0.,0.33) + 0.5 / res, 0).x;
+	float t1 = reader3.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x;
+	float t2 = reader4.SampleLevel(_LinearClamp, uv - float2(0., 0.33) + 0.5 / res, 0).x;
+	float t3 = lerp(lerp(t0, t1, step(0.33, uv.y)),t2, step(0.66, uv.y));
+	writer[id] = float4(t3,t3,t3,1.);
+}
+

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 661d1527514c4ee4b86ed63c71e835a5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - compute_shader: {instanceID: 0}
+  - mat: {fileID: 2100000, guid: 4b14a671b18d37c4798f7f004e2cc560, type: 2}
+  - tex: {instanceID: 0}
+  - mat2: {fileID: 2100000, guid: 8c32227b569378e43810bd50541490ef, type: 2}
+  - tex2: {instanceID: 0}
+  - mat3: {fileID: 2100000, guid: 37277085aa181514797e748396a1801c, type: 2}
+  - tex3: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

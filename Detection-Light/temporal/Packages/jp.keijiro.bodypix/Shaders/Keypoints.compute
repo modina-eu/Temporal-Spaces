@@ -1,0 +1,54 @@
+#pragma kernel PostprocessKeypoints
+
+#include "Common.hlsl"
+
+// Input
+StructuredBuffer<float> Heatmaps;
+StructuredBuffer<float> Offsets;
+uint2 InputSize;
+uint Stride;
+
+// Output
+RWStructuredBuffer<float4> Keypoints;
+
+uint GetLinearOffset(uint x, uint y)
+{
+    return (InputSize.y - 1 - y) * InputSize.x + x;
+}
+
+float SampleHeatmap(uint x, uint y, uint index)
+{
+    return Heatmaps[index + BODYPIX_KEYPOINT_COUNT * GetLinearOffset(x, y)];
+}
+
+float2 SampleOffset(uint x, uint y, uint index)
+{
+    uint offs = index + 2 * BODYPIX_KEYPOINT_COUNT * GetLinearOffset(x, y);
+    return float2(Offsets[offs + BODYPIX_KEYPOINT_COUNT], -Offsets[offs]);
+}
+
+[numthreads(BODYPIX_KEYPOINT_COUNT, 1, 1)]
+void PostprocessKeypoints(uint id : SV_DispatchThreadID)
+{
+    uint2 max_pos = 0;
+    float max_score = 0;
+
+    for (uint v = 0; v < InputSize.y; v++)
+    {
+        for (uint u = 0; u < InputSize.x; u++)
+        {
+            uint2 pos = uint2(u, v);
+            float score = SampleHeatmap(pos.x, pos.y, id);
+            if (score > max_score)
+            {
+                max_pos = pos;
+                max_score = score;
+            }
+        }
+    }
+
+    float2 offs = SampleOffset(max_pos.x, max_pos.y, id);
+    float2 pos = (max_pos + offs / Stride + 0.5) / InputSize;
+
+    Keypoints[id] = float4(pos, max_score, 0);
+}

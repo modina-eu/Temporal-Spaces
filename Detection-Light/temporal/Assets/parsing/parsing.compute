@@ -1,0 +1,33 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+float _resx;
+float _resy;
+float _a;
+float _b;
+float _c;
+float _d;
+float map(float value, float low1, float high1, float low2, float high2) {
+	return low2 + (value - low1) * (high2 - low2) / (high1 - low1);
+}
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float2 uv = f / res;
+	float t = 0.75;
+	
+	float d1 = _a + _c * t;
+	float d2 = _a - _c * t;
+	float d3 = _b - _d * t;
+	float d4 = _b + _d * t;
+	float ra2 = (_d / _c);
+	float2 uc =((uv - 0.5)*2.*float2(ra2, 1.))*0.5 + 0.5;
+	float2 ut =  float2(map(uc.x, 0., 1., d1, d2), map(uc.y, 0., 1., d3, d4));
+	float4 vid = reader.SampleLevel(_LinearClamp, ut + 0.5 / res, 0);
+	writer[id] = vid;
+}

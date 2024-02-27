@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!162 &1
+EditorUserSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 4
+  m_ConfigSettings:
+    RecentlyUsedSceneGuid-0:
+      value: 0209505753030a03540f0a7613775e42424f197e7b7e7f32757a4f60bab26669
+      flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 5707565051545d0a5e5808234172084414154f28792a73697b2b1f37e1e66c3a
+      flags: 0
+    RecentlyUsedSceneGuid-2:
+      value: 050151565d545f0f58560a7049770b4947161c2829717066787a1963e1b63639
+      flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 5a5757560101590a5d0c0e24427b5d44434e4c7a7b7a23677f2b4565b7b5353a
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 50000c520351515a5d08097215710944464f482b7b7e713628711b32e6b8306e
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 5403035104575e035e0d097715760e441015482c752b20367d7c4d61e4e43268
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 06500152040c58090e5c597040225a44144e4c7b7979256679714532b2b3656f
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 05050c5604030f0f0b5758231622594417161d2e282e27357e2a4b31b3b73168
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 0603565306065c5f595a5a7345745e4443161a73792c70362b7f1b35b5b2603c
+      flags: 0
+    RecentlyUsedSceneGuid-9:
+      value: 0552035251055e025d0d092647215e44414f4a2c7e7873357e7e4e61b1e5676d
+      flags: 0
+    RecentlyUsedScenePath-0:
+      value: 22424703114646680e0b0227036c6c111b07142f1f2b233e2867083debf42d
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646480e0b02271b2a511515030b3a233d327e38271427fb
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 224247031146467004000921041556150158352b252615332827187df7ee3d2cfb
+      flags: 0
+    vcSharedLogLevel:
+      value: 0d5e400f0650
+      flags: 0
+  m_VCAutomaticAdd: 1
+  m_VCDebugCom: 0
+  m_VCDebugCmd: 0
+  m_VCDebugOut: 0
+  m_SemanticMergeMode: 2
+  m_DesiredImportWorkerCount: 2
+  m_StandbyImportWorkerCount: 2
+  m_IdleImportWorkerShutdownDelay: 60000
+  m_VCShowFailedCheckout: 1
+  m_VCOverwriteFailedCheckoutAssets: 1
+  m_VCProjectOverlayIcons: 1
+  m_VCHierarchyOverlayIcons: 1
+  m_VCOtherOverlayIcons: 1
+  m_VCAllowAsyncUpdate: 1
+  m_ArtifactGarbageCollection: 1
