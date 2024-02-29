@@ -37,23 +37,9 @@ INSERT EXP PATCHES
 
 ## Arrival at MODINA//Re-evaluating OSC Values
 
+Upon arriving for the official residency period of MODINA in Jan 2024, my focus came immediately to reconsidering which motion-captured values would be the most useful. When building the OSC Bridge (see documentation), I took this chance to calculate the speed/per frame of each Vector3; rather than work with 3 values per joint at each frame, the values were condensed per frame into a single value of its distance since the previous frame. 
 
-## First prototype
+This was quite an important realization and method change, not only from a technical perspective on reducing excessive values, but from a user-experience perspective: movement over time is the basis of the installation: no movement should make no sound, slow and fast movements should each have their respective feedback.
 
-This first research prototype produced with ***[VVVV gamma](https://visualprogramming.net/)*** incorporates the basic system of recording in the first instance and replay in the second.
 
-Recording takes the form of a sequence of images that is then played back by an interactive player.
 
-https://github.com/Cosamentale/TemporalSpace_Documentation/assets/83541800/515d5a11-5972-4aba-9622-aabf09c9f2c4
-
-Here is the GitHub link to the prototype:
-
-<https://github.com/Cosamentale/Sound_TemporalSpace>
-
-The replay system enables different compositions to be obtained by varying parameters such as the speed at which the recorded sequence is played back or its arrangement in space.
-
-![image(2)](https://github.com/Cosamentale/TemporalSpace_Documentation/assets/83541800/ea428693-795a-49f4-a613-d9bca0571739)
-
-![image(1)](https://github.com/Cosamentale/TemporalSpace_Documentation/assets/83541800/9097ae75-b692-461a-854e-ce97a40fdbd2)
-
-![image](https://github.com/Cosamentale/TemporalSpace_Documentation/assets/83541800/79890c57-2618-49ce-a416-d37f5df5158a)
