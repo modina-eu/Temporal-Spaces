@@ -22,9 +22,9 @@ The first hurdles were simply deciding what motion capture values to send via th
 Initial tests with VCV Rack during the summer and early Fall had me taking individual Float data from specfic Vector3 coordinates, splitting X, Y, and Z into their values and mapping them to various modulations.
 
 e.g. 
-LeftHandX -> Oscillator Feedback
-LeftHandY -> VCF Cutoff
-LeftHandZ -> Oscillator Pitch/Oct
+  LeftHandX -> Oscillator Feedback
+  LeftHandY -> VCF Cutoff
+  LeftHandZ -> Oscillator Pitch/Oct
 
 The first experiments utilized 24 separate values: Vector3's from each hand, each elbow, each knee, and each foot. Suffice to say, extrapolating these separate floats, especially from more than one tracked individual, would prove chaotic and overwhelming when trying to map eache one to separate audio modulations. The results of using these values and the modulations relationships speak for themslves:
 
@@ -56,9 +56,9 @@ The secondary use became the modulation of various effects, be it filter cutoff 
 
 While on the topic of joints and speed, I discovered much later in the process that certain joints and speed values held more intrinsic weight based on a) attention given it by the average particiapnt, b) necessity of the joint's movement in overall bodily function, and c) the consistency of accurate recognition by the Resnet Model.
 
-#### a) Attention given it by the average participant: human beings prefer to explore with particular parts of their body. i.e. interacting with objects primarilly via their hands or facial senses.
-#### b) Necessity of the joint's movement in overall bodily function: all movement requires a basis to resist and work with gravity; the floor on which one stands, as well as the carriage of body parts when traversing space.
-#### c) Consistency of accurate recognition by the Resnet Model: prioritizing reliably recognized body parts over those which lose their tracking
+  #### a) Attention given it by the average participant: human beings prefer to explore with particular parts of their body. i.e. interacting with objects primarilly via their hands or facial senses.
+  #### b) Necessity of the joint's movement in overall bodily function: all movement requires a basis to resist and work with gravity; the floor on which one stands, as well as the carriage of body parts when traversing space.
+  #### c) Consistency of accurate recognition by the Resnet Model: prioritizing reliably recognized body parts over those which lose their tracking
 
 In following these criteria, the following joints gained exclusive priority as the primary "engines" of generating sound, as self-evident as they may seem:
 the hands, the feet, the hips (merged to a single point), the head. Of all possible parameters to work with, the speed of these 6 points were the primary building blocks for triggering sound.
