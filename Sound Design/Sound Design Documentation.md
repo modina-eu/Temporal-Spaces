@@ -14,6 +14,7 @@ In working with OSC as a protocol that would function well for fast-changing val
 
 https://vcvrack.com/
 
+
 ## First Hurdles
 
 The first hurdles were simply deciding what motion capture values to send via the OSC signals, and how these values would interact with the instruments and modulations of the patch. The entire process became a feedback loop of working with a given value, designing sounds around it, re-routing modulation, and iterating upon it. This was 
@@ -29,11 +30,13 @@ The first experiments utilized 24 separate values: Vector3's from each hand, eac
 
 INSERT CCL AUDIO TEST
 
+
 ## Experimentation in Sound Design
 
 After the first dip at the CCL with VCV, I spent the months of Fall 2024 stepping away from the motion-tracking elements to learn the elementary blocks of sound design in VCV. This exploration was self-guided with various online tutorials, and would vary greatly depending on one's artistic interests. As such, I will not about this at lnegth. The results of some of these test patches can be found below.
 
 INSERT EXP PATCHES
+
 
 ## Arrival at MODINA//Re-evaluating OSC Values
 
@@ -53,9 +56,15 @@ The secondary use became the modulation of various effects, be it filter cutoff 
 
 While on the topic of joints and speed, I discovered much later in the process that certain joints and speed values held more intrinsic weight based on a) attention given it by the average particiapnt, b) necessity of the joint's movement in overall bodily function, and c) the consistency of accurate recognition by the Resnet Model.
 
-#### a) Attention given it by the average participant: This 
+#### a) Attention given it by the average participant: human beings prefer to explore with particular parts of their body. i.e. interacting with objects primarilly via their hands or facial senses.
+#### b) Necessity of the joint's movement in overall bodily function: all movement requires a basis to resist and work with gravity; the floor on which one stands, as well as the carriage of body parts when traversing space.
+#### c) Consistency of accurate recognition by the Resnet Model: prioritizing reliably recognized body parts over those which lose their tracking
 
-In this, the following joints gained exclusive priority as the primary "engines" of generating sound. 
+In following these criteria, the following joints gained exclusive priority as the primary "engines" of generating sound, as self-evident as they may seem:
+the hands, the feet, the hips (merged to a single point), the head. Of all possible parameters to work with, the speed of these 6 points were the primary building blocks for triggering sound.
+
+
+##
 
 
 
