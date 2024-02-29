@@ -1,0 +1,40 @@
+Temporal Spaces Credits List:
+
+Conception: Max Levy, Cosa Mentale (Celia Betourne, Louis Cortes)
+Visual Direction: Celia Betourne
+Lighting: Louis Cortes
+Sound Design: Max Levy
+Movement Direction: Max Levy
+Texture/Shader: Louis Cortes
+Technical Mentorship and Development: Nuno Correia, Andreia Matos, William Primett
+Project Management: Kärt Kelder
+
+Photos: Kris Moor
+
+Many thanks to the interview contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
+
+Temporal Spaces is developed at Sõltumatu Tantsu Lava as part of the MODINA Residency Network, co-funded by the European Union: https://modina.eu/
+
+Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://github.com/acids-ircam/RAVE
+
+
+
+
+Instagram:
+
+Conception: @maxmlevy, @cosamentale_bx (Celia Betourne, Louis Cortes)
+Visual Direction: Celia Betourne
+Lighting: Louis Cortes
+Sound Design: Max Levy
+Movement Direction: Max Levy
+Texture/Shader: Louis Cortes
+Technical Mentorship and Development: @correianuno, @blaseez, @vv_weselle
+Project Management: @tr2kk
+
+Photos: @kris_moor
+
+Many thanks to the interview contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
+
+Temporal Spaces is developed at @soltumatutantsulava as part of @modina.eu co-funded by the European Union: https://modina.eu/
+
+Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://github.com/acids-ircam/RAVE
