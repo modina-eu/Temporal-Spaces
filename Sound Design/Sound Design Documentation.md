@@ -56,9 +56,9 @@ The secondary use became the modulation of various effects, be it filter cutoff 
 
 While on the topic of joints and speed, I discovered much later in the process that certain joints and speed values held more intrinsic weight based on a) attention given it by the average particiapnt, b) necessity of the joint's movement in overall bodily function, and c) the consistency of accurate recognition by the Resnet Model.
 
- _a) Attention given it by the average participant: human beings prefer to explore with particular parts of their body. i.e. interacting with objects primarilly via their hands or facial senses.
- b) Necessity of the joint's movement in overall bodily function: all movement requires a basis to resist and work with gravity; the floor on which one stands, as well as the carriage of body parts when traversing space.
- c) Consistency of accurate recognition by the Resnet Model: prioritizing reliably recognized body parts over those which lose their tracking_
+_a) Attention given it by the average participant: human beings prefer to explore with particular parts of their body. i.e. interacting with objects primarilly via their hands or facial senses._
+_b) Necessity of the joint's movement in overall bodily function: all movement requires a basis to resist and work with gravity; the floor on which one stands, as well as the carriage of body parts when traversing space._
+_c) Consistency of accurate recognition by the Resnet Model: prioritizing reliably recognized body parts over those which lose their tracking._
 
 In following these criteria, the following joints gained exclusive priority as the primary "engines" of generating sound, as self-evident as they may seem:
 the hands, the feet, the hips (merged to a single point), the head. Of all possible parameters to work with, the speed of these 6 points were the primary building blocks for triggering sound.
