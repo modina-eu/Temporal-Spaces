@@ -1,0 +1,378 @@
+[TextureSource]
+[Category("Source")]
+[Summary("")]
+shader CordoViz03ColorCorrection_TextureFX : TextureFX , Global
+{
+SamplerState samplerState
+{
+Filter = MIN_MAG_MIP_LINEAR;
+AddressU = Mirror;
+    AddressV = mirror;
+};
+float map(float value, float min1, float max1, float min2, float max2) {
+return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
+float map01(float value,  float min2, float max2) {
+return min2 + value  * (max2 - min2) ;
+}
+float2 map2(float2 value,  float2 min2, float2 max2) {
+return min2 + value  * (max2 - min2) ;
+}
+float fade;
+float longEx;
+float effetzoom;
+float zoom;
+float XPose;
+float poigne;
+float genoux;
+float droit;
+float expo;
+float minMaskBlurImg;float maxMaskBlurImg;
+float blur; float blurQuality;float texBlur;
+float variationHue; float globalHue; float3 sha; float3 mid; float3 hig; float noise;
+float saturationBright; float saturationDark; float gradiant1;float maskMinGradiant; float maskMaxGradiant;
+float maskMinSaturation; float maskMaxSaturation;float maskMinhue; float maskMaxhue;float expantionSaturation;
+float2 res;
+float ligne;float ligneTime;float epaisseurLigne;
+float3 InvLerp(float3 A, float3 B, float3 t){return (t - A) / (B - A);}
+float3 co(float3 InColor ,float3 s, float3 m, float3 h){
+    float3 OffShadows  = InColor + s;
+    float3 OffMidtones = InColor + m;
+    float3 OffHilights = InColor + h;
+    return lerp(
+        lerp(OffShadows,  OffMidtones, InvLerp(float3(0.0, 0.0, 0.0), float3(0.5, 0.5, 0.5), InColor)),
+        lerp(OffMidtones, OffHilights, InvLerp(float3(0.5, 0.5, 0.5), float3(1.0, 1.0, 1.0), InColor)),
+        step( float3(0.5, 0.5, 0.5), InColor));
+}
+float ov(float a, float b) {
+    return a<0.5?(2.0*a*b):(1.0-2.0*(1.0-a)*(1.0-b));}
+float3 ov3(float3 a, float3 b){
+    return float3(ov(a.x,b.x),ov(a.y,b.y),ov(a.z,b.z));}
+
+    float rd(float t){return frac(sin(dot(floor(t),45.236))*7845.236+Time*0.5);}
+    float rd2(float t){return frac(sin(dot(floor(t),45.236))*7845.236);}
+    float4 rd4(float t){float ft = floor(t); return frac(sin(float4(dot(ft,45.236),dot(ft,98.147),dot(ft,23.15),dot(ft,67.19)))*7845.236);}
+float no(float t){return lerp(rd(t),rd(t+1.),smoothstep(0.,1.,frac(t)));}
+float rl(float t){return frac(sin(dot(floor(t),45.236))*7845.236);}
+float nl(float t){return lerp(rl(t),rl(t+1.),smoothstep(0.,1.,frac(t)));}
+float3 desat(float3 color)
+{
+   float3 lum = float3(0.299, 0.587, 0.114);
+   float d1 = dot(lum, color);
+   return float3(d1,d1,d1);
+}
+float li(float2 uv,float2 a, float2 b ){
+float2 ua  = uv-a; float2 ba = b-a; float h  = clamp(dot(ua,ba)/dot(ba,ba),0.,1.);
+return length(ua-ba*h);
+}
+float sdl(float2 p, float2 lineA, float2 lineB)
+{
+    float2 lineDir = normalize(lineB - lineA);
+    float2 pointDir = p - lineA;
+    float distance = abs(dot(float2(-lineDir.y, lineDir.x), pointDir));
+    return distance;
+}
+float smin( float d1, float d2, float k )
+{
+    float h = clamp( 0.5 + 0.5*(d2-d1)/k, 0.0, 1.0 );
+    return lerp( d2, d1, h ) - k*h*(1.0-h);
+}
+float SmoothDamp(float current, float target, inout float currentVelocity, float smoothTime, float deltaTime, float maxSpeed)
+{
+    smoothTime = max(0.0001, smoothTime);
+    float omega = 2.0 / smoothTime;
+    float x = omega * deltaTime;
+    float exp = 1.0 / (1.0 + x + 0.48 * x * x + 0.235 * x * x * x);
+    float change = current - target;
+    float originalTo = target;
+    float maxChange = maxSpeed * smoothTime;
+    change = clamp(change, -maxChange, maxChange);
+    target = current - change;
+    float temp = (currentVelocity + omega * change) * deltaTime;
+    currentVelocity = (currentVelocity - omega * temp) * exp;
+    float output = target + (change + temp) * exp;
+
+    return output;
+}
+float4 level;
+float lev(float color, float4 l){
+    color = (color - l.x) / (l.y - l.x) * (l.w - l.z) + l.z;
+    return color;}
+    float dot2( in float2 v ) { return dot(v,v); }
+float cro( in float2 a, in float2 b ) { return a.x*b.y - a.y*b.x; }
+float bez( float2 pos, float2 A,  float2 B,  float2 C ){
+    float2 a = B - A;
+    float2 b = A - 2.0*B + C;
+    float2 c = a * 2.0;
+    float2 d = A - pos;
+    float kk = 1.0/dot(b,b);
+    float kx = kk * dot(a,b);
+    float ky = kk * (2.0*dot(a,a)+dot(d,b)) / 3.0;
+    float kz = kk * dot(d,a);
+    float res = 0.0;
+    float p = ky - kx*kx;
+    float p3 = p*p*p;
+    float q = kx*(2.0*kx*kx-3.0*ky) + kz;
+    float h = q*q + 4.0*p3;
+    if( h >= 0.0){
+        h = sqrt(h);
+        float2 x = (float2(h,-h)-q)/2.0;
+        float t3 = 1./3.;
+        float2 uv = sign(x)*pow(abs(x), float2(t3,t3));
+        float t = clamp( uv.x+uv.y-kx, 0.0, 1.0 );
+        res = dot2(d + (c + b*t)*t);}
+    else  {
+        float z = sqrt(-p);
+        float v = acos( q/(p*z*2.0) ) / 3.0;
+        float m = cos(v);
+        float n = sin(v)*1.732050808;
+        float3  t = clamp(float3(m+m,-n-m,n-m)*z-kx,0.0,1.0);
+        res = min( dot2(d+(c+b*t.x)*t.x),
+                   dot2(d+(c+b*t.y)*t.y) );}
+      return sqrt( res );}
+
+      float spo8(float2 v[8], float2 p)
+      {
+          float d = dot(p - v[0], p - v[0]);
+          float s = 1.0;
+          for (int i = 0, j = 7; i < 8; j = i, i++)
+          {
+              float2 e = v[j] - v[i];
+              float2 w = p - v[i];
+              float2 b = w - e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
+              d = min(d, dot(b, b));
+              bool3 c = bool3(p.y >= v[i].y, p.y < v[j].y, e.x * w.y > e.y * w.x);
+              if (all(c) || all(!c))
+                  s *= -1.0;
+          }
+          return s * sqrt(d);
+      }
+      float spo5(float2 v[5], float2 p)
+      {
+          float d = dot(p - v[0], p - v[0]);
+          float s = 1.0;
+          for (int i = 0, j = 4; i < 5; j = i, i++)
+          {
+              float2 e = v[j] - v[i];
+              float2 w = p - v[i];
+              float2 b = w - e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
+              d = min(d, dot(b, b));
+              bool3 c = bool3(p.y >= v[i].y, p.y < v[j].y, e.x * w.y > e.y * w.x);
+              if (all(c) || all(!c))
+                  s *= -1.0;
+          }
+          return s * sqrt(d);
+      }
+      float spo3(float2 v[3], float2 p)
+      {
+          float d = dot(p - v[0], p - v[0]);
+          float s = 1.0;
+          for (int i = 0, j = 2; i < 3; j = i, i++)
+          {
+              float2 e = v[j] - v[i];
+              float2 w = p - v[i];
+              float2 b = w - e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
+              d = min(d, dot(b, b));
+              bool3 c = bool3(p.y >= v[i].y, p.y < v[j].y, e.x * w.y > e.y * w.x);
+              if (all(c) || all(!c))
+                  s *= -1.0;
+          }
+          return s * sqrt(d);
+      }
+      float spo4(float2 v[4], float2 p)
+      {
+          float d = dot(p - v[0], p - v[0]);
+          float s = 1.0;
+          for (int i = 0, j = 3; i < 4; j = i, i++)
+          {
+              float2 e = v[j] - v[i];
+              float2 w = p - v[i];
+              float2 b = w - e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
+              d = min(d, dot(b, b));
+              bool3 c = bool3(p.y >= v[i].y, p.y < v[j].y, e.x * w.y > e.y * w.x);
+              if (all(c) || all(!c))
+                  s *= -1.0;
+          }
+          return s * sqrt(d);
+      }
+      float spo13(float2 v[13], float2 p)
+      {
+          float d = dot(p - v[0], p - v[0]);
+          float s = 1.0;
+          for (int i = 0, j = 12; i < 13; j = i, i++)
+          {
+              float2 e = v[j] - v[i];
+              float2 w = p - v[i];
+              float2 b = w - e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
+              d = min(d, dot(b, b));
+              bool3 c = bool3(p.y >= v[i].y, p.y < v[j].y, e.x * w.y > e.y * w.x);
+              if (all(c) || all(!c))
+                  s *= -1.0;
+          }
+          return s * sqrt(d);
+      }
+    stage override float4 Shading()
+    {
+    float2 uv = (streams.TexCoord.xy);
+    float2 un = frac(uv);
+    float tau = 3.14159265*2.;
+    float2 re = res;
+    float4 noi = sin(Texture1.SampleLevel(samplerState, frac(uv*re/1024.), 0)*tau*6.+Time*6.)*0.5+0.5;
+    float2 uc = uv;
+    float4 rf = float4(0.,0.,0.,0.);
+    float m = step(0.038,distance(0.255,uv.x))*step(0.0375,distance(0.7282,uv.x));
+    if(m>0.5){
+    float2 ptt = float2(0.0,0.02);
+    float2 p0 = Texture0.SampleLevel(samplerState,  float2(0.825,0.01), 0)+ptt;
+    float2 p1 = Texture0.SampleLevel(samplerState,  float2(0.835,0.01), 0)+ptt;
+    float2 p2 = Texture0.SampleLevel(samplerState,  float2(0.845,0.01), 0)+ptt;
+    float2 p3 = Texture0.SampleLevel(samplerState,  float2(0.855,0.01), 0)+ptt;
+    float2 p4 = Texture0.SampleLevel(samplerState,  float2(0.865,0.01), 0)+ptt;
+    float2 p0s = Texture0.SampleLevel(samplerState, float2(0.875,0.01), 0)+ptt;
+    float2 p1s = Texture0.SampleLevel(samplerState, float2(0.885,0.01), 0)+ptt;
+    float2 p4s = Texture0.SampleLevel(samplerState, float2(0.895,0.01), 0)+ptt;
+    float2 p2s = Texture0.SampleLevel(samplerState, float2(0.905,0.01), 0)+ptt;
+    float2 p5s = Texture0.SampleLevel(samplerState, float2(0.915,0.01), 0)+ptt;
+    float2 p3s = Texture0.SampleLevel(samplerState, float2(0.925,0.01), 0)+ptt;
+    float2 p6s = Texture0.SampleLevel(samplerState, float2(0.935,0.01), 0)+ptt;
+    float2 p7s = Texture0.SampleLevel(samplerState, float2(0.945,0.01), 0)+ptt;
+    float2 p8s = Texture0.SampleLevel(samplerState, float2(0.955,0.01), 0)+ptt;
+    float2 p9s = Texture0.SampleLevel(samplerState, float2(0.965,0.01), 0)+ptt;
+    float2 p11s = Texture0.SampleLevel(samplerState,float2(0.975,0.01), 0)+ptt;
+    float2 p10s = Texture0.SampleLevel(samplerState,float2(0.985,0.01), 0)+ptt;
+    float2 p12s = Texture0.SampleLevel(samplerState,float2(0.995,0.01), 0)+ptt;
+    float2 pf = lerp(lerp(p0,lerp(p1,p2,clamp(droit,0.,1.)),clamp(poigne,0.,1.)),lerp(p3,p4,clamp(droit,0.,1.)),clamp(genoux,0.,1.));
+    float2 pf1 = pf-zoom;
+    float2 pf2 = pf+zoom;
+    float2 uz = map2(uv,pf1,pf2);
+    uz = lerp(uv,uz+float2(XPose,0.),effetzoom);
+    float2 fac = float2(1920./1200.,1.);
+    float2 gt = (p0+p1+p2+p3+p4)/5.;
+    float a1 = step(0.5,sin(Time)*0.5+0.5);
+    float bq = clamp(blurQuality,0.2,2.);
+      float Directions = 16.0*bq;
+      float Quality = 4.0*bq;
+      float tta = ov(Texture3.SampleLevel(samplerState, uv,0).x,lerp(sin(Texture3.SampleLevel(samplerState, uv,0).x*20.+Time)*0.5+0.5,0.5,0.9));
+      float mt = (smoothstep(minMaskBlurImg,maxMaskBlurImg,tta)-.5)*10.*texBlur;
+        //float tra1 = (pow(distance(frac(uv.x*22.5),0.5),0.25)-0.5)*4.;
+        //float tra2 = max(pow(1.-sdl(uz,lerp(p0,p1,a1),p2),150.),pow(1.-sdl(uz,lerp(p2,p4,a1),p3),150.));
+        float2 ug = uz;
+        float trp = 8.;
+        float4 rpo  = rd4(Time*trp);
+        float4 rpo2 = rd4(Time*trp+78.45);
+        float4 rpo3 = rd4(Time*trp+425.36);
+        float2 ugf = ug*fac;
+        float zp = lerp(0.5,3.,zoom)*epaisseurLigne;
+        float rpof = rd(Time*trp*floor(ligneTime));
+        float pof = 0.;
+        if(rpof<0.5){
+        float2 pp1 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo.x)),step(0.85,rpo.x)),step(0.77,rpo.x)),step(0.69,rpo.x)),step(0.62,rpo.x)),step(0.53,rpo.x)),step(0.46,rpo.x)),step(0.38,rpo.x))
+        ,step(0.3,rpo.x)),step(0.23,rpo.x)),step(0.15,rpo.x)),step(0.08,rpo.x));
+        float2 pp2 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo.y)),step(0.85,rpo.y)),step(0.77,rpo.y)),step(0.69,rpo.y)),step(0.62,rpo.y)),step(0.53,rpo.y)),step(0.46,rpo.y)),step(0.38,rpo.y))
+        ,step(0.3,rpo.y)),step(0.23,rpo.y)),step(0.15,rpo.y)),step(0.08,rpo.y));
+        float2 pp3 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo.z)),step(0.85,rpo.z)),step(0.77,rpo.z)),step(0.69,rpo.z)),step(0.62,rpo.z)),step(0.53,rpo.z)),step(0.46,rpo.z)),step(0.38,rpo.z))
+        ,step(0.3,rpo.z)),step(0.23,rpo.z)),step(0.15,rpo.z)),step(0.08,rpo.z));
+        float2 pp4 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo.w)),step(0.85,rpo.w)),step(0.77,rpo.w)),step(0.69,rpo.w)),step(0.62,rpo.w)),step(0.53,rpo.w)),step(0.46,rpo.w)),step(0.38,rpo.w))
+        ,step(0.3,rpo.w)),step(0.23,rpo.w)),step(0.15,rpo.w)),step(0.08,rpo.w));
+        float2 pp5 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo2.x)),step(0.85,rpo2.x)),step(0.77,rpo2.x)),step(0.69,rpo2.x)),step(0.62,rpo2.x)),step(0.53,rpo2.x)),step(0.46,rpo2.x)),step(0.38,rpo2.x))
+        ,step(0.3,rpo2.x)),step(0.23,rpo2.x)),step(0.15,rpo2.x)),step(0.08,rpo2.x));
+        float2 pp6 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo2.y)),step(0.85,rpo2.y)),step(0.77,rpo2.y)),step(0.69,rpo2.y)),step(0.62,rpo2.y)),step(0.53,rpo2.y)),step(0.46,rpo2.y)),step(0.38,rpo2.y))
+        ,step(0.3,rpo2.y)),step(0.23,rpo2.y)),step(0.15,rpo2.y)),step(0.08,rpo2.y));
+        float2 pp7 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo2.z)),step(0.85,rpo2.z)),step(0.77,rpo2.z)),step(0.69,rpo2.z)),step(0.62,rpo2.z)),step(0.53,rpo2.z)),step(0.46,rpo2.z)),step(0.38,rpo2.z))
+        ,step(0.3,rpo2.z)),step(0.23,rpo2.z)),step(0.15,rpo2.z)),step(0.08,rpo2.z));
+        float2 pp8 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo2.w)),step(0.85,rpo2.w)),step(0.77,rpo2.w)),step(0.69,rpo2.w)),step(0.62,rpo2.w)),step(0.53,rpo2.w)),step(0.46,rpo2.w)),step(0.38,rpo2.w))
+        ,step(0.3,rpo2.w)),step(0.23,rpo2.w)),step(0.15,rpo2.w)),step(0.08,rpo2.w));
+        float2 pp9 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo3.x)),step(0.85,rpo3.x)),step(0.77,rpo3.x)),step(0.69,rpo3.x)),step(0.62,rpo3.x)),step(0.53,rpo3.x)),step(0.46,rpo3.x)),step(0.38,rpo3.x))
+        ,step(0.3,rpo3.x)),step(0.23,rpo3.x)),step(0.15,rpo3.x)),step(0.08,rpo3.x));
+        float2 pp10 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo3.y)),step(0.85,rpo3.y)),step(0.77,rpo3.y)),step(0.69,rpo3.y)),step(0.62,rpo3.y)),step(0.53,rpo3.y)),step(0.46,rpo3.y)),step(0.38,rpo3.y))
+        ,step(0.3,rpo3.y)),step(0.23,rpo3.y)),step(0.15,rpo3.y)),step(0.08,rpo3.y));
+        float2 pp11 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo3.z)),step(0.85,rpo3.z)),step(0.77,rpo3.z)),step(0.69,rpo3.z)),step(0.62,rpo3.z)),step(0.53,rpo3.z)),step(0.46,rpo3.z)),step(0.38,rpo3.z))
+        ,step(0.3,rpo3.z)),step(0.23,rpo3.z)),step(0.15,rpo3.z)),step(0.08,rpo3.z));
+        float2 pp12 = lerp(p0s,lerp(p1s,lerp(p2s,lerp(p3s,lerp(p4s,lerp(p5s,lerp(p6s,lerp(p7s,lerp(p8s,lerp(p9s,lerp(p10s,lerp(p11s,p12s,
+        step(0.92,rpo3.w)),step(0.85,rpo3.w)),step(0.77,rpo3.w)),step(0.69,rpo3.w)),step(0.62,rpo3.w)),step(0.53,rpo3.w)),step(0.46,rpo3.w)),step(0.38,rpo3.w))
+        ,step(0.3,rpo3.w)),step(0.23,rpo3.w)),step(0.15,rpo3.w)),step(0.08,rpo3.w));
+        float po1 = 0.; float po2 = 0.;float po3 = 0.; float po4 =0.;
+        if(ligne>0.1){
+       po1 =smoothstep(0.0005*zp,0.,min(sdl(ug,pp1,pp2),sdl(ug,pp2,pp3)));
+      po1 += smoothstep(0.001*zp,0.,bez(ug,pp1,pp2,pp3));
+      po1 += smoothstep(0.003*zp,0.,min(min(distance(ugf,pp1*fac),distance(ugf,pp2*fac)),
+      distance(ugf,pp3*fac)));}
+      if (ligne>0.25){
+     po2 =smoothstep(0.0005*zp,0.,min(sdl(ug,pp4,pp5),sdl(ug,pp5,pp6)));
+    po2 += smoothstep(0.001*zp,0.,bez(ug,pp4,pp5,pp6));
+    po2 += smoothstep(0.003*zp,0.,min(min(distance(ugf,pp4*fac),distance(ugf,pp5*fac)),
+    distance(ugf,pp6*fac)));}
+    if(ligne>0.5){
+     po3 =smoothstep(0.0005*zp,0.,min(sdl(ug,pp7,pp8),sdl(ug,pp8,pp9)));
+    po3 += smoothstep(0.001*zp,0.,bez(ug,pp7,pp8,pp9));
+    po3 += smoothstep(0.003*zp,0.,min(min(distance(ugf,pp7*fac),distance(ugf,pp8*fac)),
+    distance(ugf,pp9*fac)));}
+    if(ligne>0.75){
+     po4 =smoothstep(0.0005*zp,0.,min(sdl(ug,pp10,pp11),sdl(ug,pp11,pp12)));
+    po4 += smoothstep(0.001*zp,0.,bez(ug,pp10,pp11,pp12));
+    po4 += smoothstep(0.003*zp,0.,min(min(distance(ugf,pp10*fac),distance(ugf,pp11*fac)),
+    distance(ugf,pp12*fac)));}
+       pof = po1+po2+po3+po4;
+      }else{
+      float2 pr0s[8];pr0s[0] = p1s;pr0s[1] = p2s;pr0s[2] = p3s;pr0s[3] = p7s;pr0s[4] = p6s;pr0s[5] = p5s;pr0s[6] = p4s;pr0s[7] = p0s;
+      float2 pr2s[5];pr2s[0] = p0s;pr2s[1] = p3s;pr2s[2] = p10s;pr2s[3] = p12s;pr2s[4] = p6s;
+      float2 pr3s[13];pr3s[0] =p0s;pr3s[1] = p1s;pr3s[2] = p2s;pr3s[3] = p3s;pr3s[4] = p7s;pr3s[5] = p9s;pr3s[6] = p10s;pr3s[7] = p12s;
+      pr3s[8] =p11s;pr3s[9] = p8s;pr3s[10] = p6s;pr3s[11] = p5s;pr3s[12] = p4s;
+      float2 pr4s[3];pr4s[0] = p1s;pr4s[1] = p2s;pr4s[2] = p3s;
+      float2 pr5s[3];pr5s[0] = p4s;pr5s[1] = p5s;pr5s[2] = p6s;
+      float2 pr6s[3];pr6s[0] = p7s;pr6s[1] = p8s;pr6s[2] = p10s;
+      float2 pr7s[3];pr7s[0] = p8s;pr7s[1] = p11s;pr7s[2] = p12s;
+      float2 pr8s[4];pr8s[0] = p1s;pr8s[1] = p7s;pr8s[2] = p8s;pr8s[3] = p4s;
+      float2 pr9s[4];pr9s[0] = p1s;pr9s[1] = p10s;pr9s[2] = p12s;pr9s[3] = p4s;
+      float ps1 = 0.;float ps2 = 0;float ps3 = 0.;float ps4 =0.;float ps5 = 0.;float ps6 = 0.;float ps7= 0.;float ps8 = 0.; float ps9 = 0.;
+             if(rpo.x>1.-ligne){ps1 = smoothstep(0.001*zp,0.,length(spo8(pr0s,ug)));}
+             if(rpo.y>1.-ligne){ps2 = smoothstep(0.001*zp,0.,length(spo5(pr2s,ug)));}
+             if(rpo.z>1.-ligne){ps3 = smoothstep(0.001*zp,0.,length(spo13(pr3s,ug)));}
+             if(rpo.w>1.-ligne){ps4 = smoothstep(0.001*zp,0.,length(spo3(pr4s,ug)));}
+             if(rpo2.x>1.-ligne){ps5 = smoothstep(0.001*zp,0.,length(spo3(pr5s,ug)));}
+             if(rpo2.y>1.-ligne){ps6 = smoothstep(0.001*zp,0.,length(spo3(pr6s,ug)));}
+             if(rpo2.z>1.-ligne){ps7 = smoothstep(0.001*zp,0.,length(spo3(pr7s,ug)));}
+             if(rpo2.w>1.-ligne){ps8 = smoothstep(0.001*zp,0.,length(spo4(pr8s,ug)));}
+             if(rpo3.x>1.-ligne){ps9 = smoothstep(0.001*zp,0.,length(spo4(pr9s,ug)));}
+      pof = ps1+ps2+ps3+ps4+ps5+ps6+ps7+ps8+ps9;
+      }
+      float2 Radius =lerp(10.*blur+mt,-10.*blur-mt,smoothstep(0.2,0.8, nl(uv.x*7.+45.6+Time*0.2))+pof*2.)/re;
+      float c;
+      uz += (noi.zw-0.5)/re;
+      for( float d=0.0; d<Pi; d+=Pi/Directions)
+      {
+          for(float i=1.0/Quality; i<=1.0; i+=1.0/Quality)
+          {
+              float2 md = float2(cos(d*2.),sin(d*2.));
+              c +=Texture0.SampleLevel(samplerState, uz+md*Radius*i*1.9,0).z;
+          }
+      }
+      float2 uto = uc*res/73.-float2(25.0,1.15);
+      /*float toto = max(min(smoothstep(0.45 ,0.58,pow(desat(Texture4.SampleLevel(samplerState,clamp(floor(uto*16.)/16.,0.,1.),0).x),0.8)),
+      max(min(step(distance(uto.x,0.5),0.5),step(distance(uto.y,0.5),0.5)),0.85)),max(step(0.52,distance(uto.x,0.5)),step(0.52,distance(uto.y,0.5))));*/
+      c /= Quality * Directions - (Directions-1.);
+      c = clamp(c,0.,1.);
+      float cm = pow(smoothstep(maskMinSaturation,maskMaxSaturation,c),expantionSaturation);
+      float cm2 = smoothstep(maskMinGradiant,maskMaxGradiant,c);
+      float3 c2 = lerp(float3(1.,1.,1.),clamp(3.*abs(1.-2.*frac(-smoothstep(maskMinhue,maskMaxhue,c)*variationHue+uv.x*gradiant1*cm2+globalHue
+      +float3(0.,-1./3.,1./3.)))-1.,0.,1.),lerp(saturationDark,saturationBright,cm))*lev(1.-pow(c,expo),level);
+      float3 r = co(c2,sha,mid,hig);
+      float3 r2 = ov3(r,lerp(0.5,noi,noise));
+      float3 r3 = min(r2,lerp(1.-longEx,1.,Texture2.SampleLevel(samplerState,uc,0).xyz));
+      float3 r4 =lerp(r3,1.-r3,pof*0.05)*(1.-pof*0.2)*pow(clamp(fade,0.,1.),lerp(2.,lerp(3.,40,step(0.69,uv.x)),step(0.22,uv.x)));
+      rf = float4(r4,1.);
+      }
+      return rf;
+    }
+  };

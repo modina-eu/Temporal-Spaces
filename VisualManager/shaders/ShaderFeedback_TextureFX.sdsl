@@ -1,0 +1,15 @@
+[TextureSource]
+[Category("Source")]
+[Summary("")]
+shader ShaderFeedback_TextureFX : TextureFX
+{
+SamplerState samplerState
+{
+Filter = MIN_MAG_MIP_LINEAR;
+};
+    stage override float4 Shading()
+    {
+    float2 uv = (streams.TexCoord.xy);
+        return Texture0.SampleLevel(samplerState,uv,0);
+    }
+};

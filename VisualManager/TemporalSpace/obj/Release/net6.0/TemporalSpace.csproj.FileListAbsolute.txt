@@ -1,0 +1,15 @@
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\bin\Release\net6.0\TemporalSpace.deps.json
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\bin\Release\net6.0\TemporalSpace.dll
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\bin\Release\net6.0\TemporalSpace.pdb
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\bin\Release\net6.0\TemporalSpace.xml
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.csproj.AssemblyReference.cache
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.AssemblyInfoInputs.cache
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.AssemblyInfo.cs
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.csproj.CoreCompileInputs.cache
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.sourcelink.json
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.dll
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\refint\TemporalSpace.dll
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.xml
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\TemporalSpace.pdb
+D:\TEMPORAL\GIT\Sound_TemporalSpace\csharp\TemporalSpace\obj\Release\net6.0\ref\TemporalSpace.dll

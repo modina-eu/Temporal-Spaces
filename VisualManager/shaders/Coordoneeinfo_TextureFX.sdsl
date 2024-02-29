@@ -1,0 +1,39 @@
+[TextureSource]
+[Category("Source")]
+[Summary("")]
+shader Coordoneeinfo_TextureFX : TextureFX
+{
+SamplerState samplerState
+{
+Filter = MIN_MAG_MIP_POINT;
+};
+float2 P0;
+float2 P1;
+float2 P2;
+float2 P3;
+float2 P4;
+float2 P0S;
+float2 P1S;
+float2 P2S;
+float2 P3S;
+float2 P4S;
+float2 P5S;
+float2 P6S;
+float2 P7S;
+float2 P8S;
+float2 P9S;
+float2 P10S;
+float2 P11S;
+float2 P12S;
+
+stage override float4 Shading()
+{
+float2 uv = (streams.TexCoord.xy);
+float4 col = float4(Texture0.SampleLevel(samplerState, uv, 0).xyz,1.);
+float2 pp = lerp(P0,lerp(P1,lerp(P2,lerp(P3,lerp(P4,lerp(P0S,lerp(P1S,lerp(P2S,lerp(P3S,lerp(P4S,lerp(P5S,lerp(P6S,lerp(P7S,lerp(P8S,lerp(P9S,lerp(P10S,lerp(P11S,P12S,
+step(0.99,uv.x)),step(0.98,uv.x)),step(0.97,uv.x)),step(0.96,uv.x)),step(0.95,uv.x)),step(0.94,uv.x)),step(0.93,uv.x)),step(0.92,uv.x)),
+step(0.91,uv.x)),step(0.90,uv.x)),step(0.89,uv.x)),step(0.88,uv.x)),step(0.87,uv.x)),step(0.86,uv.x)),step(0.85,uv.x)),step(0.84,uv.x)),step(0.83,uv.x));
+float4 r = lerp(col,float4(pp,0.,1.),step(0.82,uv.x)*step(uv.y,0.02));
+return r;
+}
+};
