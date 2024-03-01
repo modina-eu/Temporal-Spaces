@@ -4,7 +4,7 @@ Contribution: Max Levy
 
 ## Introduction
 
-This text is a documentation of my contribution to Temporal Spaces's Sound Design, both in its technical and creative areas. 
+This text is a documentation of my contribution to Temporal Spaces's Sound Design, both in its technical and creative areas. For setting up your own systems, follow **_INSERT DOC NAME HERE._**
 
 ## VCVRack
 
