@@ -1,4 +1,4 @@
-# SOUND DESIGN
+# SOUND DESIGN in Temporal Spaces
 
 Contribution: Max Levy
 
@@ -43,11 +43,12 @@ INSERT EXP PATCHES
 
 ## Arrival at MODINA//Re-evaluating OSC Values
 
-Upon arriving for the official residency period of MODINA in Jan 2024, my focus came immediately to reconsidering which motion-captured values would be the most useful. When building the OSC Bridger*, I took this chance to calculate the speed/per frame of each Vector3; rather than work with 3 values per joint at each frame, the values were condensed per frame into a single value of its distance since the previous frame. 
+Upon arriving for the official residency period of MODINA in Jan 2024, my focus came immediately to reconsidering which motion-captured values would be the most useful. When building the OSC Bridger*, I took this chance to calculate the speed/frame of each joint's Vector3 coordinate; rather than work with 3 values per joint at each frame, the values were condensed per frame into a single value of its distance since the previous frame. 
 
 This was quite an important realization and method change, not only from a technical perspective on reducing excessive values, but from a user-experience perspective: movement over time is the basis of the installation. No movement should make no sound, slow and fast movements should each have their respective feedback. Speed via Frame Delays in the OSC Bridger were the ideal value for audience to understand their contribution to the recorded space.
 
 _*Documentation on the OSC Bridger can be found in its respective folder_
+
 
 ### Use of joint speeds
 
@@ -55,7 +56,8 @@ The primary use of the joint speeds became a gate for volume, or their analogous
 
 The secondary use became the modulation of various effects, be it filter cutoff frequencies, frequency rates of sound envelopes, density of sound occurances, or the shaping of waveforms. Exact exmples are found later below.
 
-### Priority of joints
+
+### Priority of joints in measurement
 
 While on the topic of joints and speed, I discovered much later in the process that certain joints and speed values held more intrinsic weight based on a) attention given it by the average particiapnt, b) necessity of the joint's movement in overall bodily function, and c) the consistency of accurate recognition by the Resnet Model.
 
@@ -69,7 +71,15 @@ In following these criteria, the following joints gained exclusive priority as t
 the hands, the feet, the hips (merged to a single point), the head. Of all possible parameters to work with, the speed of these 6 points were the primary building blocks for triggering sound.
 
 
-##
+### Resultant Joint Purposes
 
+The prioritized joints each had clear reasons for their use, and below I describe some obvious, but still noteworthy comments on why.
 
+Hands: Humans interact most often with their hands when utilizng a tool or connecting to a feel of feedback, especially haptic. While this project had no direct haptic element, it was assumed early on that the interaction of hands and arms would play a large part, and it was our goal to mimic this sense of feedback via acoustics. 
+
+Feet: After an initial test-group had come to use our WIP set-up, we noticed some people simply walking with hands in their pockets, thereby somewhat nullifying the statement above: hands were NOT always a go-to join. In noticing this behavior, it brought our attention to the feet and their essentiality in traversal of space. We all walk with our feet to get around. We all stand on our feet, shift our weight, and exchange between them to make any sort of traveling action. No matter what, our feet must move to afford us change in location and perspectives. (I speak specifically to non-professional, non-dance movement philosophies, which we would call pedestrian.)
+
+Hips: Alongside the highlighting of the feet, hips proved an important subset of joints-by-necessity. Under the hood, the locator coordinates of a person's entire body (not their separate joints) was utilizing their hip coordinates, and it proved important to highlight this fact via feedback. While not as evident in their accessibility/necessity as the hands or feet, the speed of hips created an important secondary layer of feedback.
+
+Head: Similar to the hips, the head was an item which most pedestrian participants would not initially explore consciously, but was clearly an important "joint" out of human understanding of self-identity; broadly speaking, people derive their centers of self through their head and/or heart. Making sure this was clearly addressed 
 
