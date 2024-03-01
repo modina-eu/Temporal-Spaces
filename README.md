@@ -1,6 +1,6 @@
 # Temporal Space
 
-Temporal Spaces is developed at ***[Sõltumatu Tantsu Lava](https://www.stl.ee/)*** as part of the ***[MODINA](https://modina.eu/about/](https://modina.eu/)*** Residency Network, co-funded by the European Union in partnership with the University of Tallinn.
+Temporal Spaces is developed at ***[Sõltumatu Tantsu Lava](https://www.stl.ee/)*** as part of the ***[MODINA](https://modina.eu/)*** Residency Network, co-funded by the European Union in partnership with the University of Tallinn.
 
 ## About
 
@@ -16,7 +16,6 @@ Max Levy
 Max Levy is a Tokyo-born choreographer and multidisciplinary artist based in Frankfurt am Main. He trained at San Francisco Ballet and performed in America before moving to Europe in 2011. As a soloist at Ballett Staatstheater Nürnberg, he danced notable roles by renowned choreographers, and earned recognition and awards at international competitions. Since 2017, Max works as a freelance choreographer, known for his intersection of meditative processes and charged atmospheres, utilizing performance communication to engage performers and spectators consciously and passively. His recent series “Sleepdancing” explores themes of sleep and attention, engaging audiences to redefine their presence during performances. Levy emphasizes collaboration, empowering artists and performers to contribute significantly to the creative process, ultimately to make work which makes all participants recognize their agency. Levy continues to create choreography while exploring music and visual arts as integral extensions of this work.
 
 Link / <https://www.max-levy.com/choreography> 
-/ <https://www.instagram.com/maxmlevy/>
 
 Celia Bétourné x Cosa Mentale
 
@@ -27,7 +26,6 @@ Cosa Mentale is also an opportunity for us to experiment with more reasoned digi
 In addition to the artistic work, Célia shares her knowledge and skills through freelance missions and training workshops, teaching 3D modeling, prototyping, and virtual and augmented reality creation. 
 
 Link / <https://www.cosamentale.fr>
-<br>/ <https://www.instagram.com/cosamentale_bx/>
 
 ## Open-Source Sharing and Documentation:
 In the spirit of MODINA’s open-sourcing of technology, and the general importance of sharing knowledge. By providing hands-on demonstrations and sharing code repositories, we want to encourage both dancers and technologists to adapt the concepts we are exploring. Additionally, we will document the process of the project, as well as the archiving of Visualization results, ensuring that the knowledge and insights gained from this project are shared with a wider community.
