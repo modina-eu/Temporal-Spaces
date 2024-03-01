@@ -57,13 +57,8 @@ Modina     / <https://www.instagram.com/modina.eu/>
 ***
 ### Instagram:
 
-Conception: ***[@maxmlevy](https://www.instagram.com/maxmlevy/)***, ***[@cosamentale_bx](https://www.instagram.com/maxmlevy/](https://www.instagram.com/cosamentale_bx/)*** (Celia Betourne, Louis Cortes)
-Visual Direction: Celia Betourne
-Lighting: Louis Cortes
-Sound Design: Max Levy
-Movement Direction: Max Levy
-Texture/Shader: Louis Cortes
-Technical Mentorship and Development: ***[@correianuno](www.instagram.com/correianuno/)***, ***[@blaseez](https://www.instagram.com/blaseez/)***, ***[@vv_weselle](https://www.instagram.com/vv_weselle/)*** https://
-Project Management:***[@tr2kk](https://www.instagram.com/tr2kk)***
+- Conception: ***[@maxmlevy](https://www.instagram.com/maxmlevy/)***, ***[@cosamentale_bx](https://www.instagram.com/maxmlevy/](https://www.instagram.com/cosamentale_bx/)*** (Celia Betourne, Louis Cortes)
+- Technical Mentorship and Development: ***[@correianuno](www.instagram.com/correianuno/)***, ***[@blaseez](https://www.instagram.com/blaseez/)***, ***[@vv_weselle](https://www.instagram.com/vv_weselle/)*** https://
+- Project Management:***[@tr2kk](https://www.instagram.com/tr2kk)***
 
 
