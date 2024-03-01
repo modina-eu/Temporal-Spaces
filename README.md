@@ -20,11 +20,13 @@ Max Levy is a Tokyo-born choreographer and multidisciplinary artist based in Fra
 Link / <https://www.max-levy.com/choreography> 
 / <https://www.instagram.com/maxmlevy/>
 
-Celia Bétourné
+Celia Bétourné x Cosa Mentale
 
 ![CeliaBetourneHeadshotSMALLSquare](https://github.com/Cosamentale/TemporalSpace_Documentation/assets/83541800/4e6260cd-2e75-47c5-9886-9a83704d56c2)
 
-Célia Bétourné is an artist and designer whose work explores the intersection of new media, visual art, and technology. With a Master’s degree in Video Game Direction and experience in virtual reality environment creation, artistic direction, and visual prototyping, Célia has a diverse range of skills in real-time content creation & experience design. She is also a co-founder of Cosa Mentale collectives, where she develops projects in immersive experience, interactive installation, generative art and audiovisual performance. In addition to her artistic work, Célia shares her knowledge and skills through freelance missions and training workshops, teaching 3D modeling, prototyping, and virtual and augmented reality creation. With an artistic approach to new technologies, Célia continues to explore the possibilities of digital art and interactive design.
+Célia Bétourné is an artist and designer whose work explores the intersection of new media, visual art, and technology. With a Master’s degree in Video Game Direction and experience in virtual reality environment creation, artistic direction, and visual prototyping, Célia has a diverse range of skills in real-time content creation & experience design. She is also a co-founder of Cosa Mentale collectives.Cosa Mentale is a new media art collective that explore new creation formats as interactive installation, audiovisual performance, live coding, immersive experience (XR) but also video games or video mapping. 
+Cosa Mentale is also an opportunity for us to experiment with more reasoned digital practices. Through our collective we pay particular attention to free and open source creation.
+In addition to the artistic work, Célia shares her knowledge and skills through freelance missions and training workshops, teaching 3D modeling, prototyping, and virtual and augmented reality creation. 
 
 Link / <https://www.cosamentale.fr>
  / <https://www.instagram.com/cosamentale_bx/>
@@ -56,18 +58,21 @@ Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://
 
 ### Social media
 Modina     / <https://www.instagram.com/modina.eu/>
-<br>           / <https://www.facebook.com/modina.eu>
+<br>       / <https://www.facebook.com/modina.eu>
+
 ### Instagram:
-Conception: @maxmlevy, @cosamentale_bx (Celia Betourne, Louis Cortes)
+Conception: ***[@maxmlevy](https://www.instagram.com/maxmlevy/)***, ***[@cosamentale_bx](https://www.instagram.com/maxmlevy/](https://www.instagram.com/cosamentale_bx/)*** (Celia Betourne, Louis Cortes)
 Visual Direction: Celia Betourne
 Lighting: Louis Cortes
 Sound Design: Max Levy
 Movement Direction: Max Levy
 Texture/Shader: Louis Cortes
-Technical Mentorship and Development: @correianuno, @blaseez, @vv_weselle
-Project Management: @tr2kk
+Technical Mentorship and Development: ***[@correianuno](www.instagram.com/correianuno/)***, ***[@blaseez](https://www.instagram.com/blaseez/)***, ***[@vv_weselle](https://www.instagram.com/vv_weselle/)*** https://
+Project Management:***[@tr2kk](https://www.instagram.com/tr2kk)***
 
-Photos: @kris_moor
+
+Photos:  ***[@kris_moor](https://www.instagram.com/kris_moor/)***
+
 
 Many thanks to the interview contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
 
