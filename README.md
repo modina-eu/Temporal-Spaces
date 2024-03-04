@@ -56,9 +56,9 @@ Temporal Spaces utilizes the following neural audio synthesis via RAVE: <https:/
 ***
 ### Instagram:
 - ***[@Modina](https://www.instagram.com/modina.eu/)*** 
-- ***[Fb Modina](https://www.facebook.com/modina.eu)
+- [Fb Modina](https://www.facebook.com/modina.eu)
 - Conception: ***[@maxmlevy](https://www.instagram.com/maxmlevy/)***, ***[@cosamentale_bx](https://www.instagram.com/cosamentale_bx/)*** (Celia Betourne, Louis Cortes)
-- Technical Mentorship and Development: ***[@correianuno](www.instagram.com/correianuno/)***, ***[@blaseez](https://www.instagram.com/blaseez/)***, ***[@vv_weselle](https://www.instagram.com/vv_weselle/)*** https://
+- Technical Mentorship and Development: ***[@correianuno](www.instagram.com/correianuno/)***, ***[@blaseez](https://www.instagram.com/blaseez/)***, ***[@vv_weselle](https://www.instagram.com/vv_weselle/)*** 
 - Project Management:***[@tr2kk](https://www.instagram.com/tr2kk)***
 
 
