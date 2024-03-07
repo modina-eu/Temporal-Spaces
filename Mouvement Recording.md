@@ -64,3 +64,24 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 ```
 
+For this project 12 body parts were recorded on the texture, these are respectively and in the order in which they are recorded (from bottom to top on the image) : 0-head, 1-leftShoulder, 2-rightShoulder, 3-leftElbow, 4-rightElbow, 5-leftWrist, 6-rightWrist, 7-hip, 8-leftKnee, 9-rightKnee, 10-leftAnkle, 11-rightAnkle.
+
+Below is a small graphic example of how these textures are read (each color is a different body part).
+
+![readingPattern02](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/75716277-bc68-4abc-96bb-8ab6d2df9c20)
+
+And another small capture showing the recording of all the points on the texture, with the system applied to a video (from a recording of a Max Levy training session taken in 2021).
+
+https://github.com/modina-eu/Temporal-Spaces/assets/43936968/a7b90523-b579-435f-9c4f-b161c40912e0
+
+We can see a clear difference on the 7th line from the bottom, because it's the only one that's a screen space position (the hips). 
+``` HLSL
+//with v to choose the body part (0 for the head, 7 for the hip, 11 for the rightAnkle, ect...)
+  vec2 tc(float time, float _resx2, float v, float itn, float it) {
+      return vec2(fract(time / _resx2), 1.-(fract(time / _resx2 / floor(_resx2 / 12.)) / it+v/it));
+    }
+```
+
+
+
+
