@@ -92,10 +92,11 @@ If you don't want to download vvvv to see this example, you can look directly at
 
 ![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/6978f55e-86c4-4aa7-855b-e58c46df7684)
 
-This example is still very raw, in the project these same data are sent in 60 fps and are processed to avoid jitter and sent via osc to other the machines.
+This example is still very raw, in the project these same data are sent in 60 fps and are processed to avoid jitter then sent via osc to other the machines.
 The patch doing this can be found here( coming soon :))
 
-
+Also, to avoid the risk of synchronization errors, the positions are also recorded on each frame of the video recording in the form of a pixel strip at the top right of the image (just the x,y position at each frame, you can see an exemple bellow).
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/212a6d38-e7c5-49f0-8445-297b3dfbcc92)
 
 
 
