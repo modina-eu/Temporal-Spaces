@@ -5,6 +5,11 @@ Finally, the blue color is equivalent to the model's detection score (the closer
 
 
 Here are some images recorded during the presentation of the intallation at the Sõltumatu Tantsu Lava in Tallinn.
+
 ![capture0001](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/4bedeca8-c50a-4340-919f-b2c4c71077de)
 ![capture0127](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/c2e72432-d70b-4c3e-82d6-5aeab3705cf4)
 ![capture0006](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/e4e2d8d7-da8d-43a2-9a57-e5fd09b1d154)
+
+All registered images can be found on this git at this location : https://github.com/modina-eu/Temporal-Spaces/tree/main/Detection-Light/temporal/Assets/StreamingAssets/Capture
+
+This system is designed to capture real-time information on the movement of people in the interactive space, for use later in the experience. However, to make it easier to test and generate content in advance, a version capturing the same data in relation to a video has been implemented.
