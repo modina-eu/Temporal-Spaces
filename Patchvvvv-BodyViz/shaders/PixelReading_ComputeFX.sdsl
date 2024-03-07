@@ -1,0 +1,89 @@
+
+shader PixelReading_ComputeFX : ComputeShaderBase, Global
+{
+    RWBuffer<float> Values;
+    Texture2D<float4> reader;
+		SamplerState samplerState
+{
+    Filter = MIN_MAG_MIP_POINT;
+};
+float nit;
+float2 tc(float _ti, float _resx2, float v, float itn, float it) {
+return float2(frac(_ti / _resx2),1.- (frac(_ti / _resx2 / itn) / it+v/it));
+}
+    override void Compute()
+    {
+        uint index = streams.DispatchThreadId.x;
+
+        float ti = nit;
+        float _resx2 = 64.;
+        float itn = floor(_resx2 / 12.);
+        float it = _resx2 / itn;
+        float2 u0 = tc(ti , _resx2,0. ,itn,it);
+        float2 u1 = tc(ti, _resx2, 1., itn, it);
+        float2 u2 = tc(ti, _resx2, 2., itn, it);
+        float2 u3 = tc(ti, _resx2, 3., itn, it);
+        float2 u4 = tc(ti, _resx2, 4., itn, it);
+        float2 u5 = tc(ti, _resx2, 5., itn, it);
+        float2 u6 = tc(ti, _resx2, 6., itn, it);
+        float2 u7 = tc(ti, _resx2, 7., itn, it);
+        float2 u8 = tc(ti, _resx2, 8., itn, it);
+        float2 u9 = tc(ti, _resx2, 9., itn, it);
+        float2 u10 = tc(ti, _resx2, 10., itn, it);
+        float2 u11 = tc(ti, _resx2, 11., itn, it);
+
+        float2 ub0 = tc(ti+1., _resx2, 0., itn, it);
+        float2 ub1 = tc(ti + 1., _resx2, 1., itn, it);
+        float2 ub2 = tc(ti + 1., _resx2, 2., itn, it);
+        float2 ub3 = tc(ti + 1., _resx2, 3., itn, it);
+        float2 ub4 = tc(ti + 1., _resx2, 4., itn, it);
+        float2 ub5 = tc(ti + 1., _resx2, 5., itn, it);
+        float2 ub6 = tc(ti + 1., _resx2, 6., itn, it);
+        float2 ub7 = tc(ti + 1., _resx2, 7., itn, it);
+        float2 ub8 = tc(ti + 1., _resx2, 8., itn, it);
+        float2 ub9 = tc(ti + 1., _resx2, 9., itn, it);
+        float2 ub10 = tc(ti + 1., _resx2, 10., itn, it);
+        float2 ub11 = tc(ti + 1., _resx2, 11., itn, it);
+
+        float a = 0.5;
+        float ta = smoothstep(0., 1., frac(ti));
+        float2 tp = lerp(reader.SampleLevel(samplerState, u7,0).xy, reader.SampleLevel(samplerState, ub7,0).xy, ta);
+        float2 p1 = ((lerp(reader.SampleLevel(samplerState, u0,0).xy,reader.SampleLevel(samplerState, ub0,0).xy,ta) - a) + tp);
+        float2 p2 = ((lerp(reader.SampleLevel(samplerState, u1,0).xy, reader.SampleLevel(samplerState, ub1,0).xy, ta) - a) + tp);
+        float2 p3 = ((lerp(reader.SampleLevel(samplerState, u2,0).xy, reader.SampleLevel(samplerState, ub2,0).xy, ta) - a) + tp);
+        float2 p4 = ((lerp(reader.SampleLevel(samplerState, u3,0).xy, reader.SampleLevel(samplerState, ub3,0).xy, ta) - a) + tp);
+        float2 p5 = ((lerp(reader.SampleLevel(samplerState, u4,0).xy, reader.SampleLevel(samplerState, ub4,0).xy, ta) - a) + tp);
+        float2 p6 = ((lerp(reader.SampleLevel(samplerState, u5,0).xy, reader.SampleLevel(samplerState, ub5,0).xy, ta) - a) + tp);
+        float2 p7 = ((lerp(reader.SampleLevel(samplerState, u6,0).xy, reader.SampleLevel(samplerState, ub6,0).xy, ta) - a) + tp);
+        float2 p8 = ((lerp(reader.SampleLevel(samplerState, u8,0).xy, reader.SampleLevel(samplerState, ub8,0).xy, ta) - a) + tp);
+        float2 p9 = ((lerp(reader.SampleLevel(samplerState, u9,0).xy, reader.SampleLevel(samplerState, ub9,0).xy, ta) - a) + tp);
+        float2 p10 = ((lerp(reader.SampleLevel(samplerState, u10,0).xy, reader.SampleLevel(samplerState, ub10,0).xy, ta) - a) + tp);
+        float2 p11 = ((lerp(reader.SampleLevel(samplerState, u11,0).xy, reader.SampleLevel(samplerState, ub11,0).xy, ta) - a) + tp);
+
+					Values[0] =p1.x;
+          Values[1] =1.-p1.y;
+          Values[2] =p2.x;
+          Values[3] =1.-p2.y;
+          Values[4] =p3.x;
+          Values[5] =1.-p3.y;
+          Values[6] =p4.x;
+          Values[7] =1.-p4.y;
+          Values[8] =p5.x;
+          Values[9] =1.-p5.y;
+          Values[10] =p6.x;
+          Values[11] =1.-p6.y;
+          Values[12] =tp.x;
+          Values[13] =1.-tp.y;
+          Values[14] =p7.x;
+          Values[15] =1.-p7.y;
+          Values[16] =p8.x;
+          Values[17] =1.-p8.y;
+          Values[18] =p9.x;
+          Values[19] =1.-p9.y;
+          Values[20] =p10.x;
+          Values[21] =1.-p10.y;
+          Values[22] =p11.x;
+          Values[23] =1.-p11.y;
+
+    }
+};

@@ -1,0 +1,105 @@
+[TextureSource]
+[Category("Source")]
+[Summary("")]
+[WantsMips("Texture0")]
+[WantsMips("Texture1")]
+shader MyShade_TextureFX : TextureFX, Global
+{
+SamplerState samplerState
+{
+Filter = MIN_MAG_MIP_POINT;
+};
+//float val[24] ;
+float p1x;
+float p1y;
+float p2x;
+float p2y;
+float p3x;
+float p3y;
+float p4x;
+float p4y;
+float p5x;
+float p5y;
+float p6x;
+float p6y;
+float p7x;
+float p7y;
+float p8x;
+float p8y;
+float p9x;
+float p9y;
+float p10x;
+float p10y;
+float p11x;
+float p11y;
+float p12x;
+float p12y;
+
+float rd(float t){return frac(sin(dot(floor(t),45.236))*7845.236);}
+float no(float t){return lerp(rd(t),rd(t+1.),smoothstep(0.,1.,frac(t)));}
+
+float li(float2 u, float2 a, float2 b) { float2 ua = u - a; float2 ba = b - a; float h = clamp(dot(ua, ba) / dot(ba, ba), 0., 1.);
+	return length(ua - ba * h);
+	}
+
+	stage override float4 Shading()
+	{
+	float2 uv = (streams.TexCoord.xy);
+  float2 fac = float2(16./9.,1.);
+  float2 d1 = float2(p1x,p1y);
+	float2 d2 = float2(p2x,p2y);
+	float2 d3 = float2(p3x,p3y);
+	float2 d4 = float2(p4x,p4y);
+	float2 d5 = float2(p5x,p5y);
+	float2 d6 = float2(p6x,p6y);
+	float2 d7 = float2(p7x,p7y);
+	float2 d8 = float2(p8x,p8y);
+	float2 d9 = float2(p9x,p9y);
+	float2 d10 = float2(p10x,p10y);
+	float2 d11 = float2(p11x,p11y);
+	float2 d12 = float2(p12x,p12y);
+
+
+  float4 col = float4(Texture0.SampleLevel(samplerState, uv, 0).xyz,1.);
+float sp = 0.005;
+  float r2 = smoothstep(sp*6.,0.,distance(uv*fac,d1*fac));
+	r2 += smoothstep(sp*1.,.0,distance(uv*fac,d2*fac));
+		r2 += smoothstep(sp,.0,distance(uv*fac,d3*fac));
+			r2 += smoothstep(sp,.0,distance(uv*fac,d5*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d5*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d6*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d7*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d8*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d9*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d10*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d11*fac));
+				r2 += smoothstep(sp,.0,distance(uv*fac,d12*fac));
+
+				float ts = 0.0015;
+				float ts2 = 0.0001;
+				float p = smoothstep(ts,ts2,li(uv, d1, d7));
+				p += smoothstep(ts, ts2, li(uv, d2, d7));
+				p += smoothstep(ts, ts2, li(uv, d3, d7));
+				p += smoothstep(ts, ts2, li(uv, d4, d7));
+				p += smoothstep(ts, ts2, li(uv, d5, d7));
+				p += smoothstep(ts, ts2, li(uv, d6, d7));
+				p += smoothstep(ts, ts2, li(uv, d8, d7));
+				p += smoothstep(ts, ts2, li(uv, d9, d7));
+				p += smoothstep(ts, ts2, li(uv, d10, d7));
+				p += smoothstep(ts, ts2, li(uv, d11, d7));
+				p += smoothstep(ts, ts2, li(uv, d12, d7));
+
+				float c = smoothstep(ts, ts2, li(uv, d1, d7 ));
+				c += smoothstep(ts, ts2, li(uv, d2, d3 ));
+				c += smoothstep(ts, ts2, li(uv, d2, d4 ));
+				c += smoothstep(ts, ts2, li(uv, d4, d6 ));
+				c += smoothstep(ts, ts2, li(uv, d3, d5 ));
+				c += smoothstep(ts, ts2, li(uv, d5, d8 ));
+				c += smoothstep(ts, ts2, li(uv, d7, d9 ));
+				c += smoothstep(ts, ts2, li(uv, d7, d10 ));
+				c += smoothstep(ts, ts2, li(uv, d9, d11 ));
+				c += smoothstep(ts, ts2, li(uv, d10, d12 ));
+
+		 return float4(r2,r2,r2,1.)+p*float4(1.,0.,0.,0.)+c+col*0.5;
+	}
+};
