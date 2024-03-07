@@ -99,5 +99,7 @@ Also, to avoid the risk of synchronization errors, the positions are also record
 ![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/212a6d38-e7c5-49f0-8445-297b3dfbcc92)
 
 
-
+Another useful resource would be the visualization page https://louiscortes.github.io/Modina-model-viz/
+contained on a small git https://github.com/LouisCortes/Modina-model-viz
+Originally created to visualize the results of texture generation, it has since been slightly expanded to also visualize all the images recorded during the initial project presentation (click in this case on the "select record texture" button then choose the desired texture number with the slider below. The line display has been modified on this one to be similar to that seen during installation.
 
