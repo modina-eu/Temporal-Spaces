@@ -16,3 +16,10 @@ This system is designed to capture real-time information on the movement of peop
 
 https://github.com/modina-eu/Temporal-Spaces/assets/43936968/73d4937f-c480-46cc-98c8-e7e639ccdea2
 
+Data is recorded along the x coordinates of the image, and once a line is completed, writing shifts by one pixel on y coordinates until the entire image is recorded.
+
+Below you can see a vizualization in red of the order in which the pixels are currently read in the app. 
+
+![readingPattern](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/e290077e-128c-45c7-b553-27c62d351117)
+
+
