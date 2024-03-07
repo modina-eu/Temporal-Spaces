@@ -85,13 +85,13 @@ The function for reading the vapors inscribed on the texture is similar to the o
 ```
 An illustrative vvvv patch showing how to read the texture can be found on this git here : https://github.com/modina-eu/Temporal-Spaces/tree/main/Patchvvvv-BodyViz
 
+it's made up of two parts, the first (and main) one in blue is used to output an array of 24 floats equivalent to the x and y positions of the 12 body parts. The second, in green, is just a preview of the data.
+For this example, the score is not displayed, but it can be retrieved by creating a new set of floats corresponding to the texture's z-value.
+For aesthetic purposes, a small translation is made between the positions via the "ta" value, this can be removed to simplify the system. 
+If you don't want to download vvvv to see this example, you can look directly at the https://github.com/modina-eu/Temporal-Spaces/blob/main/Patchvvvv-BodyViz/shaders/PixelReading_ComputeFX.sdsl file to see the implementation in question.
+
 ![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/6978f55e-86c4-4aa7-855b-e58c46df7684)
 
-
-
-an example of a sloppy implementation can be found in the "script.js" script on the page dedicated to online viewing of recordings ( in the const displayShaderSource)
-
-You can find the link here: https://louiscortes.github.io/Modina-model-viz/
 
 
 
