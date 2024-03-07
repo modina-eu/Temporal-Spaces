@@ -85,6 +85,7 @@ The function for reading the vapors inscribed on the texture is similar to the o
 ```
 An illustrative vvvv patch showing how to read the texture can be found on this git here : https://github.com/modina-eu/Temporal-Spaces/tree/main/Patchvvvv-BodyViz
 
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/6978f55e-86c4-4aa7-855b-e58c46df7684)
 
 
 
