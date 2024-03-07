@@ -12,4 +12,7 @@ Here are some images recorded during the presentation of the intallation at the 
 
 All registered images can be found on this git at this location : https://github.com/modina-eu/Temporal-Spaces/tree/main/Detection-Light/temporal/Assets/StreamingAssets/Capture
 
-This system is designed to capture real-time information on the movement of people in the interactive space, for use later in the experience. However, to make it easier to test and generate content in advance, a version capturing the same data in relation to a video has been implemented.
+This system is designed to capture real-time information on the movement of people in the interactive space, for use later in the experience. However, to make it easier to test and generate content in advance, a version capturing the same data on a video has been implemented. Below is an example video of the system (mocap with PosNet) recording the position of the nose position (wich is used which is used to position the head in the project).
+
+https://github.com/modina-eu/Temporal-Spaces/assets/43936968/73d4937f-c480-46cc-98c8-e7e639ccdea2
+
