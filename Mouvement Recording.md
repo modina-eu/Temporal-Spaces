@@ -83,6 +83,11 @@ The function for reading the vapors inscribed on the texture is similar to the o
       return vec2(fract(time / _resx2), 1.-(fract(time / _resx2 / floor(_resx2 / 12.)) / it+v/it));
     }
 ```
+An illustrative vvvv patch showing how to read the texture can be found on this git here : https://github.com/modina-eu/Temporal-Spaces/tree/main/Patchvvvv-BodyViz
+
+
+
+
 an example of a sloppy implementation can be found in the "script.js" script on the page dedicated to online viewing of recordings ( in the const displayShaderSource)
 
 You can find the link here: https://louiscortes.github.io/Modina-model-viz/
