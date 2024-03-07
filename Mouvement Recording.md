@@ -22,4 +22,45 @@ Below you can see a vizualization in red of the order in which the pixels are cu
 
 ![readingPattern](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/e290077e-128c-45c7-b553-27c62d351117)
 
+Below is an example of a script for reading data form the exemple above:
+``` HLSL
+// _resx, _resy are respectivly the resolution on x and y of the resulte image (here 64 for each)
+// actually the _time float is not equal to the application time but to the frameCount wich is clamped at 30 fps
+
+float2 u2 = float2(frac(_time  / _resx), frac((_time )/(_resx* _resyx)));
+float3 result = tex2D(_PosTex, u2).xyz;
+```
+
+And here there is the code wich is use to write the texture of this exemple:
+``` HLSL
+Texture2D<float4> reader; 
+RWTexture2D<float4> writer;
+SamplerState _pointClamp; 
+// _resx, _res, _time are the same that in the previous script
+float _resx;
+float _resy;
+float _time;
+// _pos contain the information of the x,y position of the head and on z the score of the detection (w is equal at 0)
+float4 _pos;
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	// coordonate of the pixels
+	float2 f = float2(id.x,id.y);
+	// resolution of the image
+	float2 res=float2(_resx, _resy);
+	// normalize coordonate
+	float2 uv = f / res;
+	// mask of the positon on x of the currently written pixel
+	float mask1 = step(frac(_time / _resx), uv.x);
+	// mask positon on y of the currently written pixel
+	float mask2 = step(frac((_time -(_resx-1.)) / (_resx* _resy)),uv.y+1./_resy);
+	// previous coordonates writed on the buffer
+	float4 previous = reader.SampleLevel(_pointClamp, uv + 0.5 / res, 0);
+	// adding the current coordonates the previous ones accordingly to the mask
+	float4 result = lerp(previous, _pos,mask1*mask2);
+	writer[id] = result;
+}
+
+```
 
