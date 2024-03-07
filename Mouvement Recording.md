@@ -108,4 +108,7 @@ Originally created to visualize the results of texture generation, it has since 
 The line display has been modified on this one to be similar to that seen during installation. We felt that these lines allowed the user to see the person even when they move in areas that are too dark or when the blur (which seemed important to us to anonymize the users in the bank) distorts their silhouette too much.
 Also sometimes showing aberrant detection behaviors, allowing for a better understanding of the choices the system makes.
 
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/faa9982e-97d9-4dac-8bc8-5a211c86164e)
+
+Above are some photos of the installation taken by Kris Moor where we can see the same kind of lines.
 
