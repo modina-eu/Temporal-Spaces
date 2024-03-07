@@ -75,12 +75,20 @@ And another small capture showing the recording of all the points on the texture
 https://github.com/modina-eu/Temporal-Spaces/assets/43936968/a7b90523-b579-435f-9c4f-b161c40912e0
 
 We can see a clear difference on the 7th line from the bottom, because it's the only one that's a screen space position (the hips). 
+The function for reading the vapors inscribed on the texture is similar to the one above, with the addition of a value (v here) to select the body part of interest.
+
 ``` HLSL
 //with v to choose the body part (0 for the head, 7 for the hip, 11 for the rightAnkle, ect...)
   vec2 tc(float time, float _resx2, float v, float itn, float it) {
       return vec2(fract(time / _resx2), 1.-(fract(time / _resx2 / floor(_resx2 / 12.)) / it+v/it));
     }
 ```
+an example of a sloppy implementation can be found in the "script.js" script on the page dedicated to online viewing of recordings ( in the const displayShaderSource)
+
+You can find the link here: https://louiscortes.github.io/Modina-model-viz/
+
+
+
 
 
 
