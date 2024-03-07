@@ -92,7 +92,8 @@ If you don't want to download vvvv to see this example, you can look directly at
 
 ![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/6978f55e-86c4-4aa7-855b-e58c46df7684)
 
-
+This example is still very raw, in the project these same data are sent in 60 fps and are processed to avoid jitter and sent via osc to other the machines.
+The patch doing this can be found here.
 
 
 
