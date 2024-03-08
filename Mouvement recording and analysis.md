@@ -1,3 +1,125 @@
+# Mocap system
+
+An executable can be found here : https://github.com/modina-eu/Temporal-Spaces/tree/main/BuildMocap
+
+This retrieves the stream from your webcam to feed a poseNet model.
+The detection result is then sent locally to osc via port 1111.
+
+Currently, the build returns the coordinates of 3 people simultaneously.
+All accessible addresses are listed below:
+<details>
+  <summary>Click to expand/collapse the adresses </summary>
+  
+ 	public string address2 = "/P1HeadY";
+    	public string address3 = "/P1HeadS";
+    	public string address4 = "/P1ShoulderLeftX";
+    	public string address5 = "/P1ShoulderLeftY";
+    	public string address6 = "/P1ShoulderLeftS";
+    	public string address7 = "/P1ShoulderRightX";
+    	public string address8 = "/P1ShoulderRightY";
+    	public string address9 = "/P1ShoulderRightS";
+    	public string address10 = "/P1ElbowLeftX";
+    	public string address11 = "/P1ElbowLeftY";
+    	public string address12 = "/P1ElbowLeftS";
+    	public string address13 = "/P1ElbowRightX";
+    	public string address14 = "/P1ElbowRightY";
+    	public string address15 = "/P1ElbowRightS";
+    	public string address16 = "/P1HandLeftX";
+    	public string address17 = "/P1HandLeftY";
+    	public string address18 = "/P1HandLeftS";
+    	public string address19 = "/P1HandRightX";
+    	public string address20 = "/P1HandRightY";
+    	public string address21 = "/P1HandRightS";
+    	public string address22 = "/P1HipX";
+    	public string address23 = "/P1HipY";
+    	public string address24 = "/P1HipS";
+    	public string address25 = "/P1KneeLeftX";
+    	public string address26 = "/P1KneeLeftY";
+    	public string address27 = "/P1KneeLeftS";
+    	public string address28 = "/P1KneeRightX";
+    	public string address29 = "/P1KneeRightY";
+    	public string address30 = "/P1KneeRightS";
+    	public string address31 = "/P1AnkleLeftX";
+    	public string address32 = "/P1AnkleLeftY";
+    	public string address33 = "/P1AnkleLeftS";
+    	public string address34 = "/P1AnkleRightX";
+    	public string address35 = "/P1AnkleRightY";
+    	public string address36 = "/P1AnkleRightS";
+
+
+    	public string address58 = "/P2HeadX";
+    	public string address59 = "/P2HeadY";
+    	public string address61 = "/P2ElbowLeftX";
+    	public string address62 = "/P2ElbowLeftY";
+    	public string address64 = "/P2ElbowRightX";
+    	public string address65 = "/P2ElbowRightY";
+    	public string address67 = "/P2HandLeftX";
+    	public string address68 = "/P2HandLeftY";
+    	public string address70 = "/P2HandRightX";
+    	public string address71 = "/P2HandRightY";
+    	public string address73 = "/P2HipX";
+    	public string address74 = "/P2HipY";
+    	public string address76 = "/P2KneeLeftX";
+    	public string address77 = "/P2KneeLeftY";
+    	public string address79 = "/P2KneeRightX";
+    	public string address80 = "/P2KneeRightY";
+    	public string address82 = "/P2AnkleLeftX";
+    	public string address83 = "/P2AnkleLeftY";
+    	public string address85 = "/P2AnkleRightX";
+    	public string address86 = "/P2AnkleRightY";
+    	public string address88 = "/P2HeadS";
+    	public string address89 = "/P2ElbowLeftS";
+    	public string address90 = "/P2ElbowRightS";
+    	public string address91 = "/P2HandLeftS";
+    	public string address92 = "/P2HandRightS";
+    	public string address93 = "/P2HipS";
+    	public string address94 = "/P2KneeLeftS";
+    	public string address95 = "/P2KneeRightS";
+    	public string address96 = "/P2AnkleLeftS";
+    	public string address97 = "/P2AnkleRightS";
+
+    	public string address98 = "/P3HeadX";
+    	public string address99 = "/P3HeadY";
+    	public string address101 = "/P3ElbowLeftX";
+    	public string address102 = "/P3ElbowLeftY";
+    	public string address104 = "/P3ElbowRightX";
+    	public string address105 = "/P3ElbowRightY";
+    	public string address107 = "/P3HandLeftX";
+    	public string address108 = "/P3HandLeftY";
+    	public string address110 = "/P3HandRightX";
+    	public string address111 = "/P3HandRightY";
+    	public string address113 = "/P3HipX";
+    	public string address114 = "/P3HipY";
+    	public string address116 = "/P3KneeLeftX";
+    	public string address117 = "/P3KneeLeftY";
+    	public string address119 = "/P3KneeRightX";
+    	public string address120 = "/P3KneeRightY";
+    	public string address122 = "/P3AnkleLeftX";
+    	public string address123 = "/P3AnkleLeftY";
+    	public string address125 = "/P3AnkleRightX";
+    	public string address126 = "/P3AnkleRightY";
+    	public string address128 = "/P3HeadS";
+    	public string address129 = "/P3ElbowLeftS";
+    	public string address130 = "/P3ElbowRightS";
+    	public string address131 = "/P3HandLeftS";
+    	public string address132 = "/P3HandRightS";
+    	public string address133 = "/P3HipS";
+    	public string address134 = "/P3KneeLeftS";
+    	public string address135 = "/P3KneeRightS";
+    	public string address136 = "/P3AnkleLeftS";
+    	public string address137 = "/P3AnkleRightS";
+
+    	public string address138 = "/P1Check";
+    	public string address139 = "/P2Check";
+    	public string address140 = "/P3Check";
+
+</details>
+
+Each element starting with "P1", "P2", "P3" is information relating to the first, second and third person detected respectively.
+"X" and "Y" at the end refer respectively to the horizontal and vertical position of the body parts.
+finally "S" at the end refer to the detection score (the closer the value is to 1, the more certain the model is of having detected a face).
+
+
 # Texture Recording
 
 In order to be analyzed by the system later, the first 11.38 seconds of the user's interaction are recorded in a 64 by 64 pixel image. The choice of what is recorded has not changed since the prototype, which implies that it does not take into account the position in depth of the various body parts, but only the position seen by the camera facing the video projection. The red and green colors correspond to the x and y positions of the body parts. With the exception of the hips, all these values are relative to the position of the center of the hip (from -1. to 1., to 0. to 1. to avoid negative values). A ratio calculated from the distance between the shoulders and the hips is also applied to these values, so that each movement stays at the same amplitude regardless of its distance of the body from the camera.
