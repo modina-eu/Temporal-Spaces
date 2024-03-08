@@ -120,6 +120,26 @@ Each element starting with "P1", "P2", "P3" is information relating to the first
 finally "S" at the end refer to the detection score (the closer the value is to 1, the more certain the model is of having detected a face).
 
 
+Finally, if /P(1,2,3)Check is greater than 1, the system considers that a person has been detected.
+
+To use this executable to control lights, you can use chataigne, created by https://github.com/benkuper
+here's the link to download it. https://benjamin.kuperberg.fr/chataigne/en
+"Chataigne is a free, open-source software made with one goal in mind: create a common tool for artists, technicians and developers who wish to use technology and synchronize software for shows, interactive installations or prototyping."
+
+Once you've opened Chataigne and run the build, create two modules: one for osc, one for dmx.
+
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/1895d4fd-2d27-4b48-ab36-27ae4db3f09a)
+
+then when you've set port 1111, the values should appear in the interface on the right.
+
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/71be323c-4506-457a-b37c-c8aa9b4c0b87)
+
+Then you'll need to install a usb to dmx interface and select it in the port settings of the dmx module.
+
+Once this has been done, you can create a mapping state and map any osc address to a dmx value.
+
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/c556075d-832e-4634-9120-f863a6d21238)
+
 # Texture Recording
 
 In order to be analyzed by the system later, the first 11.38 seconds of the user's interaction are recorded in a 64 by 64 pixel image. The choice of what is recorded has not changed since the prototype, which implies that it does not take into account the position in depth of the various body parts, but only the position seen by the camera facing the video projection. The red and green colors correspond to the x and y positions of the body parts. With the exception of the hips, all these values are relative to the position of the center of the hip (from -1. to 1., to 0. to 1. to avoid negative values). A ratio calculated from the distance between the shoulders and the hips is also applied to these values, so that each movement stays at the same amplitude regardless of its distance of the body from the camera.
