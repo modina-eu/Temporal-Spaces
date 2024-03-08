@@ -122,7 +122,7 @@ finally "S" at the end refer to the detection score (the closer the value is to 
 
 Finally, if /P(1,2,3)Check is greater than 1, the system considers that a person has been detected.
 
-To use this executable to control lights, you can use chataigne, created by https://github.com/benkuper
+For exemple to use this executable to control lights, you can use chataigne, created by https://github.com/benkuper
 here's the link to download it. https://benjamin.kuperberg.fr/chataigne/en
 "Chataigne is a free, open-source software made with one goal in mind: create a common tool for artists, technicians and developers who wish to use technology and synchronize software for shows, interactive installations or prototyping."
 
@@ -139,6 +139,7 @@ Then you'll need to install a usb to dmx interface and select it in the port set
 Once this has been done, you can create a mapping state and map any osc address to a dmx value.
 
 ![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/c556075d-832e-4634-9120-f863a6d21238)
+
 
 # Texture Recording
 
