@@ -129,5 +129,15 @@ This match system, while seeking similarities, is also partly intended to remain
 Allowing playfulness and engaging with other kinds of movement independently of visual and sonic reactions, a bit like a kind of meta of the installation.
 
 
+Finally, one of the other great interests of these textures was to generate movement scores via an AI model, enabling sounds and generative visuals to be made when no one is using the space.The little vvvv patch above was expressly designed for this purpose, but unfortunately we realized during playtesting that it was important to keep the playback of the last recorded movement to visually convey to users that the space at the center was an interactive space, and to encourage them to do the same when they saw other people interacting, as a kind of virtuous loop. This sudden direction didn't allow us to use this part of the research carried out during the residency as we'd hoped, leaving it full of interesting potential.
 
+Andreia Matos' contribution was also essential for this part of the project, via the solutions proposed on this git: https://github.com/modina-eu/temporal_spaces_texture_gen
+
+With this notebook for overall visual comparison: https://github.com/modina-eu/temporal_spaces_texture_gen/blob/main/notebooks/results_comparison.ipynb
+
+The results of this research can be seen on this page: https://modina-eu.github.io/temporal_spaces_texture_gen/
+
+A small graphic and sound visualization can be seen by default on the visualization page https://louiscortes.github.io/Modina-model-viz/
+
+![image](https://github.com/modina-eu/Temporal-Spaces/assets/43936968/bbc24a7f-e1d9-4373-a79a-30e10e1cf69b)
 
