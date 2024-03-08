@@ -117,7 +117,7 @@ Above are some photos of the installation taken by Kris Moor where we can see th
 One of the main ones was to find in the bank of all the interactions that had taken place in this space the one that corresponded most with the one that had just taken place, so that they could be replayed together in the observing phase.
 The solution integrated into the project here: https://github.com/modina-eu/Temporal-Spaces/blob/main/Detection-Light/temporal/Assets/PoseNet/Models/ResNEt/TextureComparator.cs
 
-Was initially proposed by Andreia ([andreianmatos
+Was initially proposed by Andreia  ([andreianmatos
 andreianmatos](https://github.com/andreianmatos)) through this repository : https://github.com/modina-eu/temporal_spaces_image_similarities
 
 This repository demonstrates image similarity using a pre-trained ResNet50 model. It compares a current person's image with images from a dataset of people, finding the most similar image.
@@ -127,6 +127,7 @@ On the other hand, the score (the closer the value is to 1, the more certain the
 has been kept to make it easier to see why certain matches are made, especially aberrant detections that end up with others having a very low score.
 This match system, while seeking similarities, is also partly intended to remain open to imprecision and to the unexpected, allowing the user to trick and mislead the system.
 Allowing playfulness and engaging with other kinds of movement independently of visual and sonic reactions, a bit like a kind of meta of the installation.
+
 
 
 
