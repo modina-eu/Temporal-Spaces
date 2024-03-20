@@ -10,12 +10,13 @@ Technical Mentorship and Development: Nuno Correia, Andreia Matos, William Prime
 Project Management: Kärt Kelder
 
 Photos: Kris Moor
+Cinematography: Paul Henrich Daude and Kätleen Noormägi
 
-Many thanks to the interview contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
+Many thanks to the voice recording contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
 
 Temporal Spaces is developed at Sõltumatu Tantsu Lava as part of the MODINA Residency Network, co-funded by the European Union: https://modina.eu/
 
-Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://github.com/acids-ircam/RAVE
+Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://github.com/acids-ircam/RAVE and audio samples from Otologic.jp
 
 
 
@@ -32,9 +33,10 @@ Technical Mentorship and Development: @correianuno, @blaseez, @vv_weselle
 Project Management: @tr2kk
 
 Photos: @kris_moor
+Cinematography: Paul Henrich Daude and Kätleen Noormägi
 
-Many thanks to the interview contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
+Many thanks to the voice recording contributions of Conrado Cerqueira, Beatriz Domingues, Luca Giovanetti, Triin Kauber, Pol Monsech, Jarmo Reha, Laura Maya Rosiers
 
 Temporal Spaces is developed at @soltumatutantsulava as part of @modina.eu co-funded by the European Union: https://modina.eu/
 
-Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://github.com/acids-ircam/RAVE
+Temporal Spaces utilizes the following neural audio synthesis via RAVE: https://github.com/acids-ircam/RAVE and audio samples from Otologic.jp
